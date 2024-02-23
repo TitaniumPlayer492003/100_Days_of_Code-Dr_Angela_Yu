@@ -8,9 +8,11 @@
 #Write your code below this line 👇
 
 bill = float(input("What was your bill? $"))
-tip = float(input("What percentage tip wpuld you like to give? "))
+tip = float(input("What percentage tip would you like to give? "))
 persons = int(input("How many people are splitting this bill? "))
 
 total = bill + (bill*tip/100)
-per_person = round(total/persons,2)
-print(f"Each person should pay: ${per_person}")
+per_person = total/persons
+# per_person = round(total/persons,2)
+# print(f"Each person should pay: ${per_person}")
+print("${:.2f}".format(per_person))
