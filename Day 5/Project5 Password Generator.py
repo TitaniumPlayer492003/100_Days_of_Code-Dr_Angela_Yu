@@ -5,7 +5,7 @@
 #e.g. 4 letter, 2 symbol, 2 number = g^2jk8&P
 
 import random
-letters = int(input('How many letter would you like in your password? '))
+letters = int(input('How many letters would you like in your password? '))
 symbols = int(input('How many symbols would you like in your password? '))
 numbers = int(input('How many numbers would you like in your password? '))
 
