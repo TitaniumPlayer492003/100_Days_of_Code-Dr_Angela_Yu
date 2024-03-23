@@ -1,0 +1,4 @@
+a=5.0
+
+a = '{:.0f}'.format(a)
+print(a)
