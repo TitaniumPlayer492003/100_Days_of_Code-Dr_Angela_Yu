@@ -39,8 +39,8 @@ card_dict = {
 }
 
 
-# Making a function to add a random card
-def addCard(entity_cards):
+# Making a function to deal a random card
+def dealCard(entity_cards):
     """
     Adds a card to an entity. Doesn't return anything. Just updates the current cards of given entity.
     """
@@ -79,8 +79,8 @@ while play == "y":
 
     # Give one card to dealer(this card is revealed), then one card to user, then one card to dealer again(this card isn't), then finally one card to user again
     for i in range(2):
-        addCard(dealer_cards)
-        addCard(user_cards)
+        dealCard(dealer_cards)
+        dealCard(user_cards)
 
     # Finding user's current score
     user_score = calcScore(user_cards)
@@ -96,20 +96,24 @@ while play == "y":
         print(f"Your cards: {conv(user_cards)}, current score: {user_score}")
 
         # Ask user to hit or hold
-        hit_hold = input("Hit or hold? ")
+        hit_hold = input("Hit or hold? ").lower()
         if hit_hold == "hit":
-            addCard(user_cards)  # adding a card
+            dealCard(user_cards)  # dealing a card
             user_score = calcScore(user_cards)  # re-calculating user_score
 
         # Assigning desirable value to 'A' : 11 or 1
         if user_score > 21 and "A" in user_cards:
             user_score -= 10
 
-    # Finding dealer's current score and making it draw one card if its score < 17 (only one card, only one time)
+    # Finding dealer's current score and making it draw card(s) while its score < 17
     dealer_score = calcScore(dealer_cards)
-    if dealer_score < 17:
-        addCard(dealer_cards)
+    while dealer_score < 17:
+        dealCard(dealer_cards)
         dealer_score = calcScore(dealer_cards)  # re-calculating dealer's score
+
+        # Assigning desirable value to 'A' : 11 or 1
+        if dealer_score > 21 and "A" in dealer_cards:
+            dealer_score -= 10
 
     os.system("cls")
     print(art.logo)
@@ -136,6 +140,6 @@ while play == "y":
         print("YOU LOST! BETTER LUCK NEXT TIME, LOSER! 😒")
 
     # Ask if user wants to play again
-    play = input("Type 'y' to play again: ")
+    play = input("Type 'y' to play again: ").lower()
     if play == "y":
         os.system("cls")
